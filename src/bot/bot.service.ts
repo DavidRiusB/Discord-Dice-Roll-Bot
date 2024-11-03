@@ -1,13 +1,17 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { Client, GatewayIntentBits, Message } from 'discord.js';
 import { ConfigService } from '@nestjs/config';
+import { CommandService } from 'src/command/command.service';
 
 @Injectable()
 export class BotService implements OnModuleInit {
   private readonly client: Client;
   private readonly logger = new Logger(BotService.name);
 
-  constructor(private configService: ConfigService) {
+  constructor(
+    private configService: ConfigService,
+    private commandService: CommandService,
+  ) {
     this.client = new Client({
       intents: [
         GatewayIntentBits.Guilds,
@@ -30,12 +34,6 @@ export class BotService implements OnModuleInit {
     } catch (error) {
       this.logger.log('Failed to log in to Discord', error);
     }
-
-    this.client.on('messageCreate', (message) => {
-      if (message.content === '!ping') {
-        message.reply('Pong!');
-      }
-    });
   }
   // Registering all bot event listeners here
   private registerEventListeners() {
@@ -46,19 +44,21 @@ export class BotService implements OnModuleInit {
   }
 
   // Handle incoming messages
-  private handleMessage(message: Message) {
+  private async handleMessage(message: Message) {
     if (message.author.bot) return;
 
-    const [command, ...args] = message.content.split(' ');
-    switch (command) {
-      case '!ping':
-        this.handlePingCommand(message);
-        break;
-      default:
-        this.logger.log(`Unknown command: ${command}`);
+    if (message.content.startsWith('!')) {
+      const [command, ...args] = message.content.slice(1).split(' ');
+
+      const response = await this.commandService.handleCommand(
+        command,
+        args,
+        message,
+      );
+
+      if (response) {
+        message.reply(response);
+      }
     }
-  }
-  private handlePingCommand(message: Message) {
-    message.reply('Pong!');
   }
 }
