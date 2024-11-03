@@ -1,5 +1,3 @@
-import { AbilityType } from 'src/Enums/abilities/abilities.enums';
-
 export interface AbilityScore {
   total: number;
   base: number;
