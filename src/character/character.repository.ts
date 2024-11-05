@@ -120,7 +120,8 @@ export class CharacterRepository {
       spellResist: 0,
       powerResist: 0,
       arcaneSpellFailure: 10,
-      baseAttack: { Strength: 2 },
+      baseAttack: 2,
+      baseAttackAbilityMod: 'STR',
     },
   ];
 

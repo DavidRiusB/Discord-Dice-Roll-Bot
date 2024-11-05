@@ -1,5 +1,5 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
-import { Client, GatewayIntentBits, Message } from 'discord.js';
+import { Client, GatewayIntentBits, Interaction, Message } from 'discord.js';
 import { ConfigService } from '@nestjs/config';
 import { CommandService } from 'src/command/command.service';
 import { registerCommands } from 'src/command/registerCommands';
@@ -45,25 +45,23 @@ export class BotService implements OnModuleInit {
     this.client.on('ready', () => {
       this.logger.log(`Logged in as ${this.client.user?.tag}`);
     });
-    this.client.on('messageCreate', (message) => this.handleMessage(message));
-  }
 
-  // Handle incoming messages
-  private async handleMessage(message: Message) {
-    if (message.author.bot) return;
+    this.client.on('interactionCreate', (interaction: Interaction) => {
+      if (!interaction.isCommand()) return; // Ensure it's a command interaction
 
-    if (message.content.startsWith('!')) {
-      const [command, ...args] = message.content.slice(1).split(' ');
-      const discordUserId = message.author.id;
-      const nick = message.member.displayName;
+      const { commandName, options } = interaction;
+      const discordUserId = interaction.user.id;
+      const nick =
+        interaction.member.user.toString() || interaction.user.username; // Fallback for DM
 
-      return await this.commandService.handleCommand(
+      // Handle the command
+      return this.commandService.handleCommand(
         nick,
         discordUserId,
-        command,
-        args,
-        message,
+        commandName,
+        options,
+        interaction,
       );
-    }
+    });
   }
 }

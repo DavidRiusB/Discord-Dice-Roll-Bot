@@ -25,5 +25,6 @@ export interface CharacterSheet {
   spellResist: number;
   powerResist: number;
   arcaneSpellFailure: number;
-  baseAttack: Record<string, number>;
+  baseAttack: number;
+  baseAttackAbilityMod: string;
 }
