@@ -1,5 +1,5 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
-import { Client, GatewayIntentBits, Message } from 'discord.js';
+import { Client, Component, GatewayIntentBits, Message } from 'discord.js';
 import { ConfigService } from '@nestjs/config';
 import { CommandService } from 'src/command/command.service';
 
@@ -49,16 +49,16 @@ export class BotService implements OnModuleInit {
 
     if (message.content.startsWith('!')) {
       const [command, ...args] = message.content.slice(1).split(' ');
+      const discordUserId = message.author.id;
+      const nick = message.member.displayName;
 
-      const response = await this.commandService.handleCommand(
+      return await this.commandService.handleCommand(
+        nick,
+        discordUserId,
         command,
         args,
         message,
       );
-
-      if (response) {
-        message.reply(response);
-      }
     }
   }
 }

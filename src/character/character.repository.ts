@@ -9,9 +9,9 @@ export class CharacterRepository {
   private mockCharacter: CharacterSheet[] = [
     {
       id: '1a',
-      discordUserId: 'Dia',
+      discordUserId: '295061081565560832',
       ECL: 3,
-      characterName: 'Dia',
+      characterName: 'Pepito',
       characterLastName: 'Doe',
       playerName: 'John',
       homeland: 'Elven Forest',
@@ -125,8 +125,10 @@ export class CharacterRepository {
   ];
 
   // Optionally, add methods to retrieve the mock data for testing purposes
-  getCharacterById(id: string): CharacterSheet | undefined {
-    return this.mockCharacter.find((character) => character.id === id);
+  async findCharacter(nick: string, id: string): Promise<CharacterSheet> {
+    return await this.mockCharacter.find(
+      (character) => character.discordUserId === id,
+    );
   }
 
   getAllCharacters(): CharacterSheet[] {
