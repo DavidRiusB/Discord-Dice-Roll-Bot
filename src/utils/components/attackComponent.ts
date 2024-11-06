@@ -5,6 +5,7 @@ const attackComponentEmbed = (
   attackRoll: number,
   rollAtk: { total: number; rolls: number[] },
   baseAttack: number,
+  damageRoll: number,
   rollDmg: { total: number; rolls: number[] },
   modifier: string,
   abilityModifier: number,

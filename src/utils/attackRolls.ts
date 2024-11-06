@@ -6,29 +6,61 @@ const attackRolls = (atkType: string, character: CharacterSheet) => {
   const { baseAttack, characterName, abilityScores, baseAttackAbilityMod } =
     character;
 
-  // Get attack modifiers
+  // Retrieve modifiers
   const abilityModifier = abilityScores[baseAttackAbilityMod].abilityModifier;
   const modifier = baseAttackAbilityMod;
   const STR = abilityScores.STR.abilityModifier;
+  const DEX = abilityScores.DEX.abilityModifier;
+
+  // Initial rolls (adjust damage dice as needed per case)
+  const rollAtk = rollDice(1, 20);
+  const rollDmg = rollDice(2, 6);
 
   let attackRoll, damageRoll;
 
   switch (atkType) {
     case 'melee':
-      // Roll for attack and damage
-      const rollAtk = rollDice(1, 20);
       attackRoll = rollAtk.total + baseAttack + abilityModifier;
-
-      const rollDmg = rollDice(2, 6); // Adjust dice roll for damage type
       damageRoll = rollDmg.total + STR;
 
-      // Return embed component
       return attackComponentEmbed(
         characterName,
         attackRoll,
         rollAtk,
         baseAttack,
+        damageRoll,
         rollDmg,
+        modifier,
+        abilityModifier,
+        STR,
+      );
+
+    case 'range':
+      attackRoll = rollAtk.total + baseAttack + DEX;
+      damageRoll = rollDmg.total;
+
+      return attackComponentEmbed(
+        characterName,
+        attackRoll,
+        rollAtk,
+        baseAttack,
+        damageRoll,
+        rollDmg,
+        'DEX',
+        DEX,
+        STR,
+      );
+
+    case 'grapple':
+      attackRoll = rollAtk.total + baseAttack + abilityModifier;
+
+      return attackComponentEmbed(
+        characterName,
+        attackRoll,
+        rollAtk,
+        baseAttack,
+        0, // Grapple attacks might have no initial damage
+        { total: 0, rolls: [] },
         modifier,
         abilityModifier,
         STR,
