@@ -7,6 +7,7 @@ import {
 } from 'discord.js';
 import { CharacterService } from 'src/character/character.service';
 import { CharacterSheet } from 'src/interfaces/character/character.interface';
+import { attackRolls } from 'src/utils';
 import characterComponentEmbed from 'src/utils/components/characterComponent';
 
 @Injectable()
@@ -52,12 +53,8 @@ export class CommandService {
         );
       }
 
-      // Here you would call your attack function, e.g., attackRolls
-      // const attackResult = attackRolls(attackType, character);
-      // return interaction.reply(attackResult);
-
-      // Placeholder response for now
-      return interaction.reply(`You chose to attack with ${attackType}.`);
+      const attackResult = attackRolls(attackType, character);
+      return interaction.reply({ embeds: [attackResult] });
     }
 
     return interaction.reply('Unknown command.');
