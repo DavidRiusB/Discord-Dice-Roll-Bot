@@ -3,12 +3,12 @@ import rollDice from './dice.utils';
 import attackComponentEmbed from './components/attackComponent';
 
 const attackRolls = (atkType: string, character: CharacterSheet) => {
-  const { baseAttack, characterName, abilityScores, baseAttackAbilityMod } =
+  const { baseAttack, characterName, abilityScores, attackAbilityModifier } =
     character;
 
   // Retrieve modifiers
-  const abilityModifier = abilityScores[baseAttackAbilityMod].abilityModifier;
-  const modifier = baseAttackAbilityMod;
+  const abilityModifier = abilityScores[attackAbilityModifier].abilityModifier;
+  const modifier = attackAbilityModifier;
   const STR = abilityScores.STR.abilityModifier;
   const DEX = abilityScores.DEX.abilityModifier;
 

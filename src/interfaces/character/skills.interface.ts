@@ -1,0 +1,56 @@
+export type SkillName =
+  | 'appraise'
+  | 'balance'
+  | 'bluff'
+  | 'climb'
+  | 'concentration'
+  | 'craft'
+  | 'decipherScript'
+  | 'diplomacy'
+  | 'disableDevice'
+  | 'disguise'
+  | 'escapeArtist'
+  | 'forgery'
+  | 'gatherInformation'
+  | 'handleAnimal'
+  | 'heal'
+  | 'hide'
+  | 'intimidate'
+  | 'jump'
+  | 'knowledgeArcana'
+  | 'knowledgeArchitecture'
+  | 'knowledgedungeoneering'
+  | 'knowledgeGeography'
+  | 'knowledgeHistory'
+  | 'knowledgeLocal'
+  | 'knowledgeNature'
+  | 'knowledgeNobility'
+  | 'knowledgeReligion'
+  | 'knowledgePlanes'
+  | 'listen'
+  | 'moveSilently'
+  | 'openLock'
+  | 'perform'
+  | 'profession'
+  | 'ride'
+  | 'search'
+  | 'senseMotive'
+  | 'sleightHand'
+  | 'speakLanguage'
+  | 'spellcraft'
+  | 'spot'
+  | 'survival'
+  | 'swim'
+  | 'tumble'
+  | 'useMagicDevice'
+  | 'useRope';
+
+export interface Skill {
+  name: string;
+  ranks: number;
+  modifier: string;
+  proficiency?: boolean;
+  raceBonus: number;
+  micBonus: number;
+  description: string;
+}

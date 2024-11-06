@@ -28,7 +28,7 @@ const attackComponentEmbed = (
       { name: '**Damage Summary**', value: '\u200B' },
       {
         name: 'Total Damage',
-        value: `**${rollDmg.total + STR}**`,
+        value: `**${damageRoll}**`,
         inline: true,
       },
       {

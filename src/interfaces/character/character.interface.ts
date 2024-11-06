@@ -1,6 +1,7 @@
 import { Alignment, Gender } from 'src/Enums/charatcer/character.enums';
 import { CharacterAbilities } from './abilities.interface';
 import { Saves } from './saves.interface';
+import { Skill, SkillName } from './skills.interface';
 export interface CharacterSheet {
   id: string;
   discordUserId: string;
@@ -26,5 +27,6 @@ export interface CharacterSheet {
   powerResist: number;
   arcaneSpellFailure: number;
   baseAttack: number;
-  baseAttackAbilityMod: string;
+  attackAbilityModifier: string;
+  skills: Record<SkillName, Skill>;
 }
