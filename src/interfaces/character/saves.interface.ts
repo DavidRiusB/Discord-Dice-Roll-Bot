@@ -7,7 +7,7 @@ export interface Save {
   miscellaneous: number;
   temporaryModifier: number;
   raceModifier: number;
-  conditional: Record<string, number>; // Used for specific conditions or situational modifiers
+  conditional: string[]; // Used for specific conditions or situational modifiers
   note: string;
 }
 

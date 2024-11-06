@@ -3,28 +3,39 @@ import rollDice from './dice.utils';
 import attackComponentEmbed from './components/attackComponent';
 
 const attackRolls = (atkType: string, character: CharacterSheet) => {
+  const { baseAttack, characterName, abilityScores, baseAttackAbilityMod } =
+    character;
+
+  // Get attack modifiers
+  const abilityModifier = abilityScores[baseAttackAbilityMod].abilityModifier;
+  const modifier = baseAttackAbilityMod;
+  const STR = abilityScores.STR.abilityModifier;
+
+  let attackRoll, damageRoll;
+
   switch (atkType) {
     case 'melee':
-      // Perform the attack roll
+      // Roll for attack and damage
       const rollAtk = rollDice(1, 20);
-      const attackRoll =
-        rollAtk.total +
-        character.baseAttack +
-        character.abilityScores[character.baseAttackAbilityMod].total;
+      attackRoll = rollAtk.total + baseAttack + abilityModifier;
 
-      // Perform damage roll (temporary for now)
-      const rollDmg = rollDice(2, 6); // Assuming a 2d6 damage roll
-      const dmg = rollDmg.total + character.abilityScores.STR.total;
+      const rollDmg = rollDice(2, 6); // Adjust dice roll for damage type
+      damageRoll = rollDmg.total + STR;
 
-      // Create the embed
+      // Return embed component
       return attackComponentEmbed(
-        character.characterName,
+        characterName,
         attackRoll,
         rollAtk,
-        character.baseAttack,
-        dmg,
+        baseAttack,
         rollDmg,
+        modifier,
+        abilityModifier,
+        STR,
       );
+
+    default:
+      throw new Error(`Unknown attack type: ${atkType}`);
   }
 };
 export default attackRolls;

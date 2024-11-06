@@ -5,21 +5,38 @@ const attackComponentEmbed = (
   attackRoll: number,
   rollAtk: { total: number; rolls: number[] },
   baseAttack: number,
-  damage: number,
   rollDmg: { total: number; rolls: number[] },
+  modifier: string,
+  abilityModifier: number,
+  STR: number,
 ) => {
-  const embed = new EmbedBuilder()
+  return new EmbedBuilder()
     .setColor('#0099ff')
-    .setTitle(`${name} Melee Attack:`)
-    .setDescription(`**Damage Roll:** ${rollDmg.rolls.join(', ')}`)
+    .setTitle(`${name} Melee Attack`)
+    .setDescription(`Weapon: temporary`) // Placeholder for weapon name
     .addFields(
-      { name: '**Melee Attack**', value: '\u200B' },
-      { name: 'Attack Total', value: `${attackRoll}`, inline: true },
-      { name: 'Attack Roll', value: `${rollAtk.total}`, inline: true },
-      { name: 'Base Attack', value: `${baseAttack}`, inline: true },
-      { name: 'Damage Total', value: `${damage}`, inline: true },
-    );
+      { name: '**Attack Summary**', value: '\u200B' },
+      { name: 'Total Attack Roll', value: `**${attackRoll}**`, inline: true },
+      { name: 'Roll Result', value: `${rollAtk.total}`, inline: true },
+      {
+        name: 'Base Attack',
+        value: `|BA: ${baseAttack}|${modifier} Mod: ${abilityModifier}|`,
+        inline: true,
+      },
 
-  return embed; // Return the embed object
+      { name: '**Damage Summary**', value: '\u200B' },
+      {
+        name: 'Total Damage',
+        value: `**${rollDmg.total + STR}**`,
+        inline: true,
+      },
+      {
+        name: 'Damage Rolls',
+        value: `[${rollDmg.rolls.join(', ')}]`,
+        inline: true,
+      },
+      { name: 'Strength Modifier', value: `${STR}`, inline: true },
+    );
 };
+
 export default attackComponentEmbed;

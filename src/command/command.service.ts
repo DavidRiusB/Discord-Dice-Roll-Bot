@@ -42,7 +42,7 @@ export class CommandService {
     }
 
     if (command === 'attack') {
-      const attackType = options.getString('type'); // Assuming you're passing the attack type as a string option
+      const attackType = options.getString('type');
       const character = await this.characterService.getCharacter(
         nickname,
         discordUserId,

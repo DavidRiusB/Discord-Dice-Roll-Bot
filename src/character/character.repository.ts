@@ -28,13 +28,13 @@ export class CharacterRepository {
       equipmentId: 'eq123',
       abilityScores: {
         STR: {
-          total: 10,
-          base: 10,
+          total: 14,
+          base: 14,
           miscellaneous: 0,
           race: 0,
           equipment: 0,
           note: '',
-          abilityModifier: 0,
+          abilityModifier: 2,
         },
         DEX: {
           total: 15,
@@ -43,7 +43,7 @@ export class CharacterRepository {
           race: 2,
           equipment: 0,
           note: '',
-          abilityModifier: 0,
+          abilityModifier: 2,
         },
         CON: {
           total: 12,
@@ -52,7 +52,7 @@ export class CharacterRepository {
           race: 0,
           equipment: 0,
           note: '',
-          abilityModifier: 0,
+          abilityModifier: 1,
         },
         INT: {
           total: 14,
@@ -61,7 +61,7 @@ export class CharacterRepository {
           race: 0,
           equipment: 0,
           note: '',
-          abilityModifier: 0,
+          abilityModifier: 2,
         },
         WIS: {
           total: 13,
@@ -70,11 +70,11 @@ export class CharacterRepository {
           race: 0,
           equipment: 0,
           note: '',
-          abilityModifier: 0,
+          abilityModifier: 1,
         },
         CHA: {
-          total: 8,
-          base: 8,
+          total: 10,
+          base: 10,
           miscellaneous: 0,
           race: 0,
           equipment: 0,
@@ -84,14 +84,14 @@ export class CharacterRepository {
       },
       saves: {
         fortitude: {
-          total: 5,
+          total: 4,
           baseSave: 3,
           abilityModifier: 1,
           epicSaveBonus: 0,
-          miscellaneous: 1,
+          miscellaneous: 0,
           temporaryModifier: 0,
           raceModifier: 0,
-          conditional: {},
+          conditional: [],
           note: '',
         },
         reflex: {
@@ -102,7 +102,7 @@ export class CharacterRepository {
           miscellaneous: 1,
           temporaryModifier: 0,
           raceModifier: 0,
-          conditional: {},
+          conditional: [],
           note: '',
         },
         will: {
@@ -113,7 +113,7 @@ export class CharacterRepository {
           miscellaneous: 1,
           temporaryModifier: 0,
           raceModifier: 0,
-          conditional: {},
+          conditional: [],
           note: '',
         },
       },
