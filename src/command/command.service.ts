@@ -7,7 +7,7 @@ import {
 } from 'discord.js';
 import { CharacterService } from 'src/character/character.service';
 import { CharacterSheet } from 'src/interfaces/character/character.interface';
-import { attackRolls } from 'src/utils';
+import { attackRolls, skillRolls } from 'src/utils';
 import characterComponentEmbed from 'src/utils/components/characterComponent';
 
 @Injectable()
@@ -69,8 +69,8 @@ export class CommandService {
           `No character sheet found for this user. ${discordUserId}`,
         );
       }
-
-      return interaction.reply(skillName);
+      const skillResults = skillRolls(skillName, character);
+      return interaction.reply({ embeds: [skillResults] });
     }
 
     return interaction.reply('Unknown command.');
