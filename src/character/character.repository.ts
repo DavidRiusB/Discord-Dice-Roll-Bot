@@ -456,7 +456,7 @@ export class CharacterRepository {
           description: 'Ability to appraise value of objects.',
         },
         speakLanguage: {
-          name: 'Sleight of Hand',
+          name: 'Speak Language',
           ranks: 0,
           modifier: 'INT',
           proficiency: false,

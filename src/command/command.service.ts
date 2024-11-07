@@ -57,6 +57,22 @@ export class CommandService {
       return interaction.reply({ embeds: [attackResult] });
     }
 
+    if (command === 'skill') {
+      const skillName = options.getString('type');
+      const character = await this.characterService.getCharacter(
+        nickname,
+        discordUserId,
+      );
+
+      if (!character) {
+        return interaction.reply(
+          `No character sheet found for this user. ${discordUserId}`,
+        );
+      }
+
+      return interaction.reply(skillName);
+    }
+
     return interaction.reply('Unknown command.');
   }
 }
