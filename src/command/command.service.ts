@@ -27,10 +27,7 @@ export class CommandService {
     }
 
     if (command === 'character') {
-      const character = await this.characterService.getCharacter(
-        nickname,
-        discordUserId,
-      );
+      const character = await this.characterService.getCharacter(discordUserId);
       if (!character) {
         return interaction.reply(
           `No character sheet found for this user. ${discordUserId}`,
@@ -43,10 +40,7 @@ export class CommandService {
 
     if (command === 'attack') {
       const attackType = options.getString('type');
-      const character = await this.characterService.getCharacter(
-        nickname,
-        discordUserId,
-      );
+      const character = await this.characterService.getCharacter(discordUserId);
       if (!character) {
         return interaction.reply(
           `No character sheet found for this user. ${discordUserId}`,
@@ -59,10 +53,7 @@ export class CommandService {
 
     if (command === 'skill') {
       const skillName = options.getString('type');
-      const character = await this.characterService.getCharacter(
-        nickname,
-        discordUserId,
-      );
+      const character = await this.characterService.getCharacter(discordUserId);
 
       if (!character) {
         return interaction.reply(
