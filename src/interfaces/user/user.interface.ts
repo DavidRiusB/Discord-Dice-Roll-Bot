@@ -4,5 +4,5 @@ export interface User {
   id: string;
   discordUserId: string;
   selectedCharacter: string;
-  characters: CharacterSheet[];
+  characters: string[];
 }

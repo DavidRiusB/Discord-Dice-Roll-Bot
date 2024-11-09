@@ -6,8 +6,8 @@ import { CharacterSheet } from 'src/interfaces/character/character.interface';
 export class CharacterService {
   constructor(private readonly characterRepository: CharacterRepository) {}
 
-  async getCharacter(discordUserId: string): Promise<CharacterSheet> {
+  async getCharacter(characterId: string): Promise<CharacterSheet> {
     // Call the findCharacter method with the appropriate arguments
-    return await this.characterRepository.findCharacter(discordUserId);
+    return await this.characterRepository.findCharacter(characterId);
   }
 }

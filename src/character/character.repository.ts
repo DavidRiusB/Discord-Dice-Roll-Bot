@@ -532,44 +532,7 @@ export class CharacterRepository {
     },
   ];
 
-  private mockUser: User[] = [
-    {
-      id: 'test1a',
-      discordUserId: '295061081565560832',
-      selectedCharacter: 'test1b',
-      characters: this.mockCharacter,
-    },
-  ];
-
-  // Finds the currently selected character for a user by their Discord ID
-  async findCharacter(id: string): Promise<CharacterSheet> {
-    const user = this.mockUser.find((user) => user.discordUserId === id);
-
-    if (!user) {
-      throw new Error(`User with Discord ID ${id} not found.`);
-    }
-
-    const character = user.characters.find(
-      (char) => char.id === user.selectedCharacter,
-    );
-
-    if (!character) {
-      throw new Error(
-        `Character with ID ${user.selectedCharacter} not found for user.`,
-      );
-    }
-
-    return character;
-  }
-
-  // Retrieves all characters for a user by their Discord ID
-  async getAllUserCharacters(id: string): Promise<CharacterSheet[]> {
-    const user = this.mockUser.find((user) => user.discordUserId === id);
-
-    if (!user) {
-      throw new Error(`User with Discord ID ${id} not found.`);
-    }
-
-    return user.characters;
+  async findCharacter(characterId: string): Promise<CharacterSheet> {
+    return this.mockCharacter.find((char) => char.id === characterId);
   }
 }
