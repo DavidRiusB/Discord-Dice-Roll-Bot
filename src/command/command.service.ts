@@ -1,12 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import {
-  EmbedBuilder,
-  Interaction,
-  CommandInteraction,
-  InteractionType,
-} from 'discord.js';
+import { Interaction } from 'discord.js';
 import { CharacterService } from 'src/character/character.service';
-import { CharacterSheet } from 'src/interfaces/character/character.interface';
 import { attackRolls, skillRolls } from 'src/utils';
 import characterComponentEmbed from 'src/utils/components/characterComponent';
 
@@ -15,7 +9,6 @@ export class CommandService {
   constructor(private characterService: CharacterService) {}
 
   async handleCommand(
-    nickname: string,
     discordUserId: string,
     command: string,
     options: any, // Use the appropriate type for options if available
@@ -36,6 +29,11 @@ export class CommandService {
 
       const embed = characterComponentEmbed(character);
       return interaction.reply({ embeds: [embed] });
+    }
+
+    if (command === 'select') {
+      const selection = options.getString('type');
+      const character = 0;
     }
 
     if (command === 'attack') {

@@ -2,8 +2,13 @@ import { REST } from 'discord.js';
 import { Routes } from 'discord-api-types/v9';
 import attackCommand from './attackCommand';
 import skillCommand from './skillCommand';
+import selectCharacterCommand from './selectCharacterCommand';
 
-const commands = [attackCommand.toJSON(), skillCommand.toJSON()];
+const commands = [
+  attackCommand.toJSON(),
+  skillCommand.toJSON(),
+  selectCharacterCommand.toJSON(),
+];
 
 export const registerCommands = async (appId: string, token: string) => {
   const rest = new REST({ version: '10' }).setToken(token);

@@ -51,12 +51,9 @@ export class BotService implements OnModuleInit {
 
       const { commandName, options } = interaction;
       const discordUserId = interaction.user.id;
-      const nick =
-        interaction.member.user.toString() || interaction.user.username; // Fallback for DM
 
       // Handle the command
       return this.commandService.handleCommand(
-        nick,
         discordUserId,
         commandName,
         options,

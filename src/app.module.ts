@@ -6,6 +6,7 @@ import { CharacterModule } from './character/character.module';
 import { BotModule } from './bot/bot.module';
 import { CommandModule } from './command/command.module';
 import { DiceModule } from './dice/dice.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { DiceModule } from './dice/dice.module';
     BotModule,
     CommandModule,
     DiceModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
