@@ -535,4 +535,11 @@ export class CharacterRepository {
   async findCharacter(characterId: string): Promise<CharacterSheet> {
     return this.mockCharacter.find((char) => char.id === characterId);
   }
+
+  async findAllUserCharacters(userId: string): Promise<CharacterSheet[]> {
+    const characters = this.mockCharacter.filter(
+      (character) => character.discordUserId === userId,
+    );
+    return characters;
+  }
 }

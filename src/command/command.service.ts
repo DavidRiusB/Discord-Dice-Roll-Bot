@@ -4,6 +4,7 @@ import { CharacterService } from 'src/character/character.service';
 import { UserService } from 'src/user/user.service';
 import { attackRolls, skillRolls } from 'src/utils';
 import characterComponentEmbed from 'src/utils/components/characterComponent';
+import selectCharacterComponent from 'src/utils/components/selectCharacterComponent';
 
 @Injectable()
 export class CommandService {
@@ -15,12 +16,12 @@ export class CommandService {
   async handleCommand(
     discordUserId: string,
     command: string,
-    options: any, // Use the appropriate type for options if available
+    options: any,
     interaction: Interaction,
   ) {
     // Ensure the interaction is a CommandInteraction
     if (!interaction.isCommand()) {
-      return; // Optionally, handle this case differently
+      return;
     }
 
     const user = await this.userService.getUser(discordUserId);
@@ -44,6 +45,18 @@ export class CommandService {
 
     if (command === 'select') {
       const selection = options.getString('type');
+      const characters = await this.characterService.getAllUserCharacters(
+        user.discordUserId,
+      );
+
+      if (characters.length === 0) {
+        return interaction.reply('No characters found for user');
+      }
+      const component = selectCharacterComponent(characters);
+      return interaction.reply({
+        embeds: component.embeds,
+        components: component.components,
+      });
     }
 
     if (command === 'attack') {
