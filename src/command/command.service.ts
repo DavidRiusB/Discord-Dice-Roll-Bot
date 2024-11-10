@@ -75,4 +75,38 @@ export class CommandService {
 
     return interaction.reply('Unknown command.');
   }
+
+  async handleSelecMenu(userId: string, interaction: Interaction) {
+    // Check if the interaction is for selecting a character
+    if (
+      !interaction.isStringSelectMenu() ||
+      interaction.customId !== 'select_character'
+    )
+      return;
+
+    const selectedCharacterId = interaction.values[0];
+    try {
+      await this.userService.updateSelectedCharacter(
+        userId,
+        selectedCharacterId,
+      );
+      const character =
+        await this.characterService.getCharacter(selectedCharacterId);
+      const characterName = character
+        ? character.characterName
+        : 'your character';
+      await interaction.reply({
+        content: `Your active character has been set to ${characterName}!`,
+        ephemeral: true,
+      });
+    } catch (error) {
+      console.error('Failed to update character:', error);
+
+      await interaction.reply({
+        content:
+          'An error occurred while setting your active character. Please try again later.',
+        ephemeral: true,
+      });
+    }
+  }
 }

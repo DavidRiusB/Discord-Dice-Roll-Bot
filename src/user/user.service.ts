@@ -8,4 +8,11 @@ export class UserService {
   async getUser(id: string) {
     return await this.userRepository.findUser(id);
   }
+
+  async updateSelectedCharacter(id: string, selectedCharacterId: string) {
+    return await this.userRepository.updateActiveCharacter(
+      id,
+      selectedCharacterId,
+    );
+  }
 }

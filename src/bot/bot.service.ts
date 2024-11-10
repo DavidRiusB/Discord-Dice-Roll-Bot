@@ -47,18 +47,27 @@ export class BotService implements OnModuleInit {
     });
 
     this.client.on('interactionCreate', (interaction: Interaction) => {
-      if (!interaction.isCommand()) return; // Ensure it's a command interaction
-
-      const { commandName, options } = interaction;
       const discordUserId = interaction.user.id;
 
-      // Handle the command
-      return this.commandService.handleCommand(
-        discordUserId,
-        commandName,
-        options,
-        interaction,
-      );
+      // Check if it's a command interaction
+      if (interaction.isCommand()) {
+        const { commandName, options } = interaction;
+
+        // Handle the command
+        return this.commandService.handleCommand(
+          discordUserId,
+          commandName,
+          options,
+          interaction,
+        );
+      }
+
+      // Check if it's a select menu interaction
+      if (interaction.isStringSelectMenu()) {
+        return this.commandService.handleSelecMenu(discordUserId, interaction);
+      } else {
+        return;
+      }
     });
   }
 }
