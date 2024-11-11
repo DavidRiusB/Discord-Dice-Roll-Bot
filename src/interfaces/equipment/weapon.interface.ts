@@ -1,6 +1,6 @@
 export interface Weapon {
   id: string;
-  creatorId: string;
+  createdBy: string;
   name: string;
   cost: number;
   damageDiceType: number;

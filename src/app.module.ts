@@ -7,6 +7,7 @@ import { BotModule } from './bot/bot.module';
 import { CommandModule } from './command/command.module';
 import { DiceModule } from './dice/dice.module';
 import { UserModule } from './user/user.module';
+import { WeaponModule } from './weapon/weapon.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { UserModule } from './user/user.module';
     CommandModule,
     DiceModule,
     UserModule,
+    WeaponModule,
   ],
   controllers: [AppController],
   providers: [AppService],
