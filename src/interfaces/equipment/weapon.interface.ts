@@ -1,3 +1,5 @@
+import { AbilityType } from 'src/Enums/abilities/abilities.enums';
+
 export interface Weapon {
   id: string;
   createdBy: string;
@@ -8,6 +10,11 @@ export interface Weapon {
   criticalRange: number;
   range: number;
   weight: number;
-  dmgType: string;
+  damageType: string;
   weaponType: string;
+  weaponEnhancement: number;
+  weaponFocus: number;
+  weaponSpecialization: number;
+  ammunition: number;
+  damageAbility: AbilityType;
 }

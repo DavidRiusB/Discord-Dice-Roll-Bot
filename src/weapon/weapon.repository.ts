@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Weapon } from '../interfaces/equipment/weapon.interface';
+import { AbilityType } from 'src/Enums/abilities/abilities.enums';
 
 @Injectable()
 export class WeaponRepository {
@@ -14,8 +15,13 @@ export class WeaponRepository {
       criticalRange: 19,
       range: 0,
       weight: 3,
-      dmgType: 'Slashing',
+      damageType: 'Slashing',
       weaponType: 'Simple',
+      weaponEnhancement: 0,
+      weaponFocus: 0,
+      weaponSpecialization: 0,
+      ammunition: 0,
+      damageAbility: AbilityType.STR,
     },
     {
       id: '2',
@@ -27,8 +33,13 @@ export class WeaponRepository {
       criticalRange: 20,
       range: 80,
       weight: 5,
-      dmgType: 'Pircing',
+      damageType: 'Pircing',
       weaponType: 'Simple',
+      weaponEnhancement: 0,
+      weaponFocus: 0,
+      weaponSpecialization: 0,
+      ammunition: 20,
+      damageAbility: AbilityType.NONE,
     },
   ];
 

@@ -5,4 +5,5 @@ export enum AbilityType {
   INT = 'Intelligence',
   WIS = 'Wisdom',
   CHA = 'Charisma',
+  NONE = 'None',
 }
