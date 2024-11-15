@@ -3,18 +3,36 @@ import rollDice from './dice.utils';
 import attackComponentEmbed from './components/attackComponent';
 
 const attackRolls = (atkType: string, character: CharacterSheet) => {
-  const { baseAttack, characterName, abilityScores, attackAbilityModifier } =
-    character;
+  const {
+    baseAttack,
+    characterName,
+    abilityScores,
+    attackAbilityModifier,
+    weapons,
+    activeWeapon,
+  } = character;
 
   // Retrieve modifiers
-  const abilityModifier = abilityScores[attackAbilityModifier].abilityModifier;
+  const abilityModifier = abilityScores[attackAbilityModifier]?.abilityModifier;
   const modifier = attackAbilityModifier;
   const STR = abilityScores.STR.abilityModifier;
   const DEX = abilityScores.DEX.abilityModifier;
 
+  // Find the active weapon
+  const weapon = weapons.find((w) => w.id === activeWeapon);
+  if (!weapon) {
+    console.error(
+      `Active weapon with ID ${activeWeapon} not found in weapons array.`,
+    );
+    return null; // or handle the missing weapon case as needed
+  }
+
+  // Retrieve weapon stats
+  const { damageDiceType, damageDiceCount } = weapon;
+
   // Initial rolls (adjust damage dice as needed per case)
   const rollAtk = rollDice(1, 20);
-  const rollDmg = rollDice(2, 6);
+  const rollDmg = rollDice(damageDiceCount, damageDiceType);
 
   let attackRoll, damageRoll;
 
