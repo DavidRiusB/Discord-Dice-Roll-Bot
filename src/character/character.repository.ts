@@ -3,6 +3,7 @@ import { User } from 'src/interfaces/user/user.interface';
 import { Alignment, Gender } from 'src/Enums/charatcer/character.enums';
 import { CharacterSheet } from 'src/interfaces/character/character.interface';
 import { SkillName, Skill } from 'src/interfaces/character/skills.interface';
+import { AbilityType } from 'src/Enums/abilities/abilities.enums';
 
 @Injectable()
 export class CharacterRepository {
@@ -529,6 +530,45 @@ export class CharacterRepository {
           description: 'Ability to appraise value of objects.',
         },
       },
+      weapons: [
+        {
+          id: '1',
+          createdBy: 'user1',
+          name: 'Long Sword',
+          cost: 150,
+          damageDiceType: 8,
+          damageDiceCount: 1,
+          criticalRange: 19,
+          range: 0,
+          weight: 3,
+          damageType: 'Slashing',
+          weaponType: 'Simple',
+          weaponEnhancement: 0,
+          weaponFocus: 0,
+          weaponSpecialization: 0,
+          ammunition: 0,
+          damageAbility: AbilityType.STR,
+        },
+        {
+          id: '2',
+          createdBy: 'user2',
+          name: 'Crossbow',
+          cost: 250,
+          damageDiceType: 10,
+          damageDiceCount: 1,
+          criticalRange: 20,
+          range: 80,
+          weight: 5,
+          damageType: 'Pircing',
+          weaponType: 'Simple',
+          weaponEnhancement: 0,
+          weaponFocus: 0,
+          weaponSpecialization: 0,
+          ammunition: 20,
+          damageAbility: AbilityType.NONE,
+        },
+      ],
+      activeWeapon: '1',
     },
   ];
 
