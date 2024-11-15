@@ -1,7 +1,6 @@
 import { Alignment, Gender } from 'src/Enums/charatcer/character.enums';
 import { CharacterAbilities } from './abilities.interface';
 import { Saves } from './saves.interface';
-import { Skill, SkillName } from './skills.interface';
 import { Weapon } from '../equipment/weapon.interface';
 export interface CharacterSheet {
   id: string;
@@ -29,7 +28,6 @@ export interface CharacterSheet {
   arcaneSpellFailure: number;
   baseAttack: number;
   attackAbilityModifier: string;
-  skills: Record<SkillName, Skill>;
   activeWeapon: string;
   weapons: Weapon[];
 }

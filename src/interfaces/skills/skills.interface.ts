@@ -1,3 +1,5 @@
+import { AbilityType } from 'src/Enums/abilities/abilities.enums';
+
 export type SkillName =
   | 'appraise'
   | 'balance'
@@ -48,9 +50,15 @@ export type SkillName =
 export interface Skill {
   name: string;
   ranks: number;
-  modifier: string;
+  modifier: AbilityType;
   proficiency?: boolean;
-  raceBonus: number;
-  micBonus: number;
+  racialBonus: number;
+  miscBonus: number;
   description: string;
+}
+
+export interface SkillSheet {
+  id: string;
+  characterId: string;
+  skills: Record<SkillName, Skill>;
 }
