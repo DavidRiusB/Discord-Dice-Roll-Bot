@@ -8,6 +8,10 @@ import { CommandModule } from './command/command.module';
 import { DiceModule } from './dice/dice.module';
 import { UserModule } from './user/user.module';
 import { WeaponModule } from './weapon/weapon.module';
+import { SkillsModule } from './skills/skills.module';
+import { InventoryModule } from './inventory/inventory.module';
+import { SpellModule } from './spell/spell.module';
+import { SummonModule } from './summon/summon.module';
 
 @Module({
   imports: [
@@ -18,6 +22,10 @@ import { WeaponModule } from './weapon/weapon.module';
     DiceModule,
     UserModule,
     WeaponModule,
+    SkillsModule,
+    InventoryModule,
+    SpellModule,
+    SummonModule,
   ],
   controllers: [AppController],
   providers: [AppService],
